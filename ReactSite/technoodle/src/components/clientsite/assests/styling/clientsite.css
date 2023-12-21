@@ -1,0 +1,371 @@
+@font-face {
+    font-family: "Lodrina - Solid";
+    src: url('../fonts/Londrina/LondrinaSolid-Regular.otf');
+}
+
+@media only screen and (max-width:1000px) {
+
+    html,
+    body {
+        font-family: "Lodrina - Solid";
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .nav-logo {
+        padding-left: 10PX;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .navbar-ul {
+        padding: 0px;
+        list-style: none;
+        display: grid;
+        grid-template-columns: 120px;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 0px;
+        background-color: #F9B67C;
+        align-items: center;
+        justify-items: center;
+        max-width: auto;
+        height: 50px;
+        margin-bottom: 0PX;
+    }
+
+    .navitem {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .navitem-nav {
+        height: 0px;
+    }
+
+    #navitem {
+        height: 100%;
+        display: none;
+    }
+
+    #dropdown {
+        display: none;
+    }
+
+    .navitem:hover {
+        background-color: #FD9868;
+    }
+
+    .navbar-item1 {
+        grid-area: 1 / 1 / 1 / 1;
+    }
+
+    .navbar-item2 {
+        grid-area: 2 / 1 / 2 / 6;
+    }
+
+    .navbar-item3 {
+        grid-area: 3 / 1 / 3 / 6;
+    }
+
+    .navbar-item4 {
+        grid-area: 4 / 1 / 4 / 6;
+    }
+
+    .navbar-item5 {
+        grid-area: 5 / 1 / 5 / 6;
+    }
+
+    .navbar-item7 {
+        grid-area: 6 / 1 / 6 / 6;
+    }
+
+    .navbar-item6 {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 45px;
+        grid-area: 1/5/1/6;
+    }
+
+    .nav-dropdown-checkbox {
+        display: hidden;
+    }
+
+    .welcome-container {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/motherboard-stock.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: grid;
+    }
+
+    .welcome-text {
+        color: white;
+        text-align: center;
+        text-shadow: 1px 1px black;
+    }
+
+    .navitem-nav {
+        color: white;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: black;
+    }
+
+    .navitem-nav:hover {
+        color: black;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: white;
+    }
+
+    .about-container {
+        display: grid;
+        grid-template-columns: auto;
+        width: 90%;
+        margin: auto;
+    }
+
+    .about-header {
+        width: 100%;
+    }
+
+    .services-container {
+        display: grid;
+        grid-template-rows: auto;
+        width: 90%;
+        margin: auto;
+    }
+
+    .services-ul {
+        list-style: square;
+        display: grid;
+        grid-template-columns: 250px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-container {
+        width: 90%;
+        margin: auto;
+        height: 400px;
+    }
+
+    .contact-email-header {
+        text-align: center;
+    }
+
+    .footer-bg {
+        background-color: #F9B67C;
+        margin-top: 180px;
+    }
+
+    .footer-container {
+        width: 90%;
+        margin: auto;
+        display: grid;
+
+    }
+
+    .footer-text {
+        margin-top: 7px;
+        margin-bottom: 7px;
+        text-align: center;
+        color: black;
+    }
+
+    .footer-text-icon {
+        color: #0077b5;
+    }
+}
+
+
+@media only screen and (min-width:1001px) {
+
+    html,
+    body {
+        font-family: "Lodrina - Solid";
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .navbar-ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 100px 70px 70px 70px 70px;
+        grid-gap: 15px;
+        grid-template-rows: auto;
+        height: 45px;
+        background-color: #F9B67C;
+        position: fixed;
+        width: 100%;
+        align-items: center;
+        justify-items: center;
+        font-size: larger;
+    }
+
+    .navitem {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 45px;
+    }
+
+    .navitem:hover {
+        background-color: #FD9868;
+    }
+
+    .nav-logo {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .navbar-item1 {
+        grid-area: 1 / 1 / 1 / 1;
+    }
+
+    .navbar-item2 {
+        grid-area: 1 / 2 / 1 / 2;
+    }
+
+    .navbar-item3 {
+        grid-area: 1 / 3 / 1 / 3;
+    }
+
+    .navbar-item4 {
+        grid-area: 1 / 4 / 1 / 4;
+    }
+
+    .navbar-item5 {
+        grid-area: 1 / 5 / 1 / 5;
+    }
+
+    .navbar-item7 {
+        grid-area: 1 / 6 / 1 / 6;
+        justify-self: right;
+        padding-right: 40px;
+    }
+
+    .icon-size {
+        height: 40px;
+        width: 40px;
+    }
+
+    .nav-dropdown {
+        display: none;
+    }
+
+    .welcome-container {
+        padding-top: 50px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/motherboard-stock.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .welcome-text {
+        color: white;
+        text-align: center;
+        text-shadow: 1px 1px black;
+    }
+
+    #dropdown {
+        display: none;
+    }
+
+    .nav-dropdown-label {
+        display: none;
+    }
+
+    .navitem-nav {
+        color: white;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: black;
+    }
+
+    .navitem-nav:hover {
+        color: black;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: white;
+    }
+
+    .about-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 90%;
+        margin: auto;
+    }
+
+    .about-header {
+        width: 100%;
+    }
+
+    .about-text {
+        font-size: larger;
+    }
+
+    .services-background {}
+
+    .services-container {
+        display: grid;
+        grid-template-rows: auto;
+        width: 90%;
+        margin: auto;
+    }
+
+    .services-ul {
+        list-style: square;
+        display: grid;
+        grid-template-columns: 250px 250px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .services-ul .services-li {
+        font-size: larger;
+    }
+
+    .contact-container {
+        width: 90%;
+        margin: auto;
+        height: 470px;
+        font-size: larger;
+    }
+
+
+    .contact-email-header {
+        text-align: center;
+    }
+
+    .footer-bg {
+        background-color: #F9B67C;
+    }
+
+    .footer-container {
+        width: 90%;
+        margin: auto;
+        display: grid;
+
+    }
+
+    .footer-text {
+        margin-top: 7px;
+        margin-bottom: 7px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+    }
+
+    .footer-text-icon {
+        color: #0077b5;
+    }
+}
