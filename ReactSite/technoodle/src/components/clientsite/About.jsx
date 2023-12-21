@@ -5,7 +5,6 @@ export default function About() {
         <div className="about-container">
             <div className="about-header">
                 <h3><b>About Us</b></h3>
-                <img src={pageicon} />
                 <p className="about-text"><b>Lorem</b> ipsum,
                 </p>
                 <p className="about-text">
