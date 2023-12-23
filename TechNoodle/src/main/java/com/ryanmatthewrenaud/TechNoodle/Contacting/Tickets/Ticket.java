@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.ryanmatthewrenaud.TechNoodle.Contacting.Contact;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +24,9 @@ public class Ticket {
 	private boolean contacted;
 	private LocalDate lastContacted;
 	private String disposition;
-	private boolean archived = false; 
+	private boolean archived; 
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name="ticket_id")
 	private Contact contact;
 	
@@ -100,6 +101,7 @@ public class Ticket {
 	public boolean getArchived() {
 		return archived;
 	}
+
 
 	@Override
 	public String toString() {

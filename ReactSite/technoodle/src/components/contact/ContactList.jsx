@@ -30,6 +30,8 @@ export default function ContactList() {
           <th>Name(First & Last)</th>
           <th>Email</th>
           <th>Phone #</th>
+          <th>Initial Contacted</th>
+          <th>Initial Contact Date</th>
           <th>Tickets</th>
           <th>Modify</th>
         </thead>
@@ -38,6 +40,8 @@ export default function ContactList() {
             <td>{contact.firstName} {contact.lastName}</td>
             <td>{contact.email}</td>
             <td>{contact.phoneNumber}</td>
+            <td>{contact.initialContact.toString()}</td>
+            <td>{contact.initialContactDate}</td>
             <td><ListClientTickets contactID={contact.id} /></td>
             <td>
               <AddClientTicket contactID={contact.id} />

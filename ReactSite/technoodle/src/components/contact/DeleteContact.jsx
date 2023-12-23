@@ -14,7 +14,7 @@ export default function DeleteContact({ id }) {
 
     return (
         <div>
-            <Button variant="danger" onClick={handleRemove}>Remove</Button>
+            <Button variant="danger" onClick={handleRemove}>Remove Contact</Button>
         </div>
     )
 

@@ -54,6 +54,8 @@ public class ContactController {
 	public ResponseEntity createContact(@RequestBody Contact contact) throws URISyntaxException{
 		Contact currentContact = contact;
 		contact.setPhoneNumber(contact.formatPhoneNumber());
+		contact.setInitialContact(false);
+		contact.setInitialContactDate(LocalDate.now());
 		contactRepository.save(contact);
 		return ResponseEntity.created(new URI("/contacts/" + currentContact.getId())).body(currentContact);
 	}
@@ -62,14 +64,6 @@ public class ContactController {
 	@DeleteMapping(path = "/api/contacts/{id}")
 	public ResponseEntity deleteContactById(@PathVariable int id){
 		Contact currentContact = contactRepository.findById(id).orElseThrow(RuntimeException::new);
-		List<Ticket> allTickets = currentContact.getAllContactTickets();
-		while(allTickets.size() > 0) {
-			int temp = allTickets.size()-1;
-			Ticket tempTicket = allTickets.get(allTickets.size() -1 );
-			currentContact.removeTicket(temp);
-			ticketRepository.delete(tempTicket);
-		}
-		contactRepository.save(currentContact);
 		contactRepository.delete(currentContact);
 		return ResponseEntity.ok().build();
 	}
@@ -123,6 +117,7 @@ public class ContactController {
 		currentTicket.setContacted(false);
 		currentTicket.setLastContacted(LocalDate.now());
 		currentTicket.setDisposition("Not Started");
+		currentTicket.setArchived(false);
 		ticketRepository.save(currentTicket);
 		return ResponseEntity.created(new URI("/contacts/" + currentContact.getId() + "/tickets/" + currentTicket.getId())).body(currentContact);
 	}

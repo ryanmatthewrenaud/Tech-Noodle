@@ -1,11 +1,12 @@
 package com.ryanmatthewrenaud.TechNoodle.Contacting;
 
 import java.time.LocalDate;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 import com.ryanmatthewrenaud.TechNoodle.Contacting.Tickets.Ticket;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +23,10 @@ public class Contact {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
+	private boolean initialContact;
+	private LocalDate initialContactDate;
 	
-	@OneToMany(mappedBy = "contact")
+	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Ticket> tickets;
 	
 	public Contact() {
@@ -31,13 +34,15 @@ public class Contact {
 	}
 
 	// Constructor for contact, takes in 5 params
-	public Contact(int id, String firstName, String lastName, String email, String phoneNumber) {
+	public Contact(int id, String firstName, String lastName, String email, String phoneNumber, boolean initialContact, LocalDate initialContactDate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
+		this.initialContact = initialContact;
+		this.initialContactDate = initialContactDate;
 	}
 
 	// Getters
@@ -80,15 +85,21 @@ public class Contact {
 	public void removeTicket(int id) {
 		tickets.remove(id);
 	}
-	
-	public void flushAllClientTickets() {
-		int i = 0;
-		while(tickets.size() != 0) {
-			System.out.println(tickets.get(i));
-			tickets.remove(i);
-			i++;
-		}
-		
+
+	public void setInitialContact(boolean initialContact){
+		this.initialContact = initialContact;
+	}
+
+	public boolean getInitialContact(){
+		return initialContact;
+	}
+
+	public void setInitialContactDate(LocalDate initialContactDate){
+		this.initialContactDate = initialContactDate;
+	}
+
+	public LocalDate getInitialContactDate(){
+		return initialContactDate;
 	}
 	
 	public String formatPhoneNumber() {
