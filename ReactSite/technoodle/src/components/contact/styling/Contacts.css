@@ -1,9 +1,10 @@
 body {
     width: 100%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
 
 .contact {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     width: 80%;
     display: grid;
     margin: auto;
