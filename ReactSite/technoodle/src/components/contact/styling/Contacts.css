@@ -1,13 +1,20 @@
-.contact{
-   
+body {
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.contactHeader{
+.contact {
+    width: 80%;
+    display: grid;
+    margin: auto;
+}
+
+.contactHeader {
     text-align: center;
 }
 
 
-.addContact{
-    float:right;
+.addContact {
+    float: right;
     margin: 5px;
 }

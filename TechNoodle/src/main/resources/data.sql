@@ -8,7 +8,7 @@ insert into ticket(id, device, description, contacted, last_contacted, dispositi
 values(1, 'HP', 'Very slow needs to be sped up', false, '20231201', 'Not Started', false , 1);
 
 insert into ticket(id, device, description, contacted, last_contacted, disposition, archived, ticket_id)
-values(2, 'Xbox', 'It Broke', false, '20231201', 'Not Started',false, 2);
+values(1, 'Xbox', 'It Broke', false, '20231201', 'Not Started',false, 2);
 
 insert into ticket(id, device, description, contacted, last_contacted, disposition, archived, ticket_id)
-values(3, 'HP', 'Very slow needs to be sped up test add', false, '20231203', 'Not Started',false, 1);
+values(2, 'HP', 'Very slow needs to be sped up test add', false, '20231203', 'Not Started',false, 1);

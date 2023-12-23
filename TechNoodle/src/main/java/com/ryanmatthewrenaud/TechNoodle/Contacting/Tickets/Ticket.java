@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Ticket {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -24,17 +24,18 @@ public class Ticket {
 	private boolean contacted;
 	private LocalDate lastContacted;
 	private String disposition;
-	private boolean archived; 
-	
+	private boolean archived;
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name="ticket_id")
+	@JoinColumn(name = "ticket_id")
 	private Contact contact;
-	
+
 	public Ticket() {
-		
+
 	}
-	
-	public Ticket(int id, String device, String description, boolean contacted, LocalDate lastContacted, String disposition, boolean archived, Contact contact) {
+
+	public Ticket(int id, String device, String description, boolean contacted, LocalDate lastContacted,
+			String disposition, boolean archived, Contact contact) {
 		super();
 		this.id = id;
 		this.device = device;
@@ -49,7 +50,7 @@ public class Ticket {
 	public int getId() {
 		return id;
 	}
-	
+
 	public String getDevice() {
 		return device;
 	}
@@ -85,30 +86,27 @@ public class Ticket {
 	public String getDisposition() {
 		return disposition;
 	}
-	
+
 	public void setDisposition(String disposition) {
 		this.disposition = disposition;
 	}
-	
+
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	
+
 	public void setArchived(boolean archived) {
 		this.archived = archived;
 	}
-	
+
 	public boolean getArchived() {
 		return archived;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Ticket [id=" + id + ", device=" + device + ", description=" + description + ", contacted=" + contacted
 				+ ", lastContacted=" + lastContacted + ", disposition=" + disposition + ", contact=" + contact + "]";
 	}
-	
-	
-	
+
 }

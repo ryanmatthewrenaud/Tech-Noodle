@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+
+import DeleteClientTicket from "./DeleteClientTicket";
 
 
 export default function ListClientTickets({ contactID }) {
@@ -16,17 +17,6 @@ export default function ListClientTickets({ contactID }) {
                 console.log(error);
             });
     })
-
-    const handleRemove = async (event, ticketID) => {
-        try {
-            console.log(ticketID)
-            console.log(contactID)
-            const response = axios.delete(`http://localhost:8080/api/contacts/${contactID}/tickets/${ticketID}`)
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
 
     return (
 
@@ -43,13 +33,14 @@ export default function ListClientTickets({ contactID }) {
                 </thead>
                 {tickets.map(ticket => (
                     <tbody tbody key={ticket.id} >
+                        
                         <td>{ticket.id}</td>
                         <td>{ticket.device}</td>
                         <td>{ticket.description}</td>
                         <td>{ticket.contacted.toString()}</td>
                         <td>{ticket.lastContacted}</td>
                         <td>{ticket.disposition}</td>
-                        <td><Button variant="danger" onClick={(e) => handleRemove(e, ticket.id)}>Remove Ticket</Button></td>
+                        <td><DeleteClientTicket ticketSize={tickets.length} contactID={contactID} ticketID={ticket.id} /></td>
                     </tbody>
                 ))}
             </Table>
