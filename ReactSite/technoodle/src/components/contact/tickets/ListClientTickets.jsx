@@ -3,6 +3,7 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 
 import DeleteClientTicket from "./DeleteClientTicket";
+import EditClientTicket from "./EditClientTicket";
 
 
 export default function ListClientTickets({ contactID }) {
@@ -29,18 +30,19 @@ export default function ListClientTickets({ contactID }) {
                     <th>Contacted</th>
                     <th>Last Contacted</th>
                     <th>Disposition</th>
+                    <th>Archived</th>
                     <th>Modify</th>
                 </thead>
                 {tickets.map(ticket => (
                     <tbody tbody key={ticket.id} >
-                        
                         <td>{ticket.id}</td>
                         <td>{ticket.device}</td>
                         <td>{ticket.description}</td>
                         <td>{ticket.contacted.toString()}</td>
                         <td>{ticket.lastContacted}</td>
                         <td>{ticket.disposition}</td>
-                        <td><DeleteClientTicket ticketSize={tickets.length} contactID={contactID} ticketID={ticket.id} /></td>
+                        <td>{ticket.archived.toString()}</td>
+                        <td><EditClientTicket id={contactID} ticketID={ticket.id} device={ticket.device} description={ticket.description} contacted={ticket.contacted} lastContacted={ticket.lastContacted} disposition={ticket.disposition} /><DeleteClientTicket ticketSize={tickets.length} contactID={contactID} ticketID={ticket.id} archived={ticket.archived} /></td>
                     </tbody>
                 ))}
             </Table>

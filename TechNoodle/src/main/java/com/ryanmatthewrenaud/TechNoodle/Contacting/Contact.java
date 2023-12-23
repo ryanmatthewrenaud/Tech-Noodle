@@ -25,16 +25,17 @@ public class Contact {
 	private String phoneNumber;
 	private boolean initialContact;
 	private LocalDate initialContactDate;
-	
+
 	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Ticket> tickets;
-	
+
 	public Contact() {
-		
+
 	}
 
 	// Constructor for contact, takes in 5 params
-	public Contact(int id, String firstName, String lastName, String email, String phoneNumber, boolean initialContact, LocalDate initialContactDate) {
+	public Contact(int id, String firstName, String lastName, String email, String phoneNumber, boolean initialContact,
+			LocalDate initialContactDate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -69,47 +70,57 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	public List<Ticket> getAllContactTickets(){
+
+	public List<Ticket> getAllContactTickets() {
 		return tickets;
 	}
-	
+
 	public Ticket getTicketByID(int id) {
-		return tickets.get(id);
-	}
-	
-	public void removeTicket(int id) {
-		tickets.remove(id);
+		for (int ctr = 0; ctr < tickets.size(); ctr++) {
+			if (tickets.get(ctr).getId() == id) {
+				return tickets.get(ctr);
+			}
+		}
+		return null;
 	}
 
-	public void setInitialContact(boolean initialContact){
+	public void removeTicket(int id) {
+		for (int ctr = 0; ctr < tickets.size(); ctr++) {
+			if (tickets.get(ctr).getId() == id) {
+				tickets.remove(ctr);
+			}
+		}
+	}
+
+	public void setInitialContact(boolean initialContact) {
 		this.initialContact = initialContact;
 	}
 
-	public boolean getInitialContact(){
+	public boolean getInitialContact() {
 		return initialContact;
 	}
 
-	public void setInitialContactDate(LocalDate initialContactDate){
+	public void setInitialContactDate(LocalDate initialContactDate) {
 		this.initialContactDate = initialContactDate;
 	}
 
-	public LocalDate getInitialContactDate(){
+	public LocalDate getInitialContactDate() {
 		return initialContactDate;
 	}
-	
+
 	public String formatPhoneNumber() {
 		String phoneNumber = this.phoneNumber;
-		phoneNumber.replaceAll("[^\\d]","");
-		if(phoneNumber.charAt(0) == '1' && phoneNumber.length() > 10) {
+		phoneNumber.replaceAll("[^\\d]", "");
+		if (phoneNumber.charAt(0) == '1' && phoneNumber.length() > 10) {
 			phoneNumber = phoneNumber.substring(1);
 		}
 		java.text.MessageFormat phoneNumberFormat = new java.text.MessageFormat("({0})-{1}-{2}");
-		String[] phoneNumberArray = {phoneNumber.substring(0,3), phoneNumber.substring(3,6), phoneNumber.substring(6)};
+		String[] phoneNumberArray = { phoneNumber.substring(0, 3), phoneNumber.substring(3, 6),
+				phoneNumber.substring(6) };
 		return phoneNumberFormat.format(phoneNumberArray);
 	}
 

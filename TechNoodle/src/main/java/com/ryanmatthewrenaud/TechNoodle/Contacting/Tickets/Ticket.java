@@ -26,7 +26,7 @@ public class Ticket {
 	private String disposition;
 	private boolean archived;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "ticket_id")
 	private Contact contact;
 
@@ -67,7 +67,7 @@ public class Ticket {
 		this.description = description;
 	}
 
-	public boolean isContacted() {
+	public boolean getContacted() {
 		return contacted;
 	}
 

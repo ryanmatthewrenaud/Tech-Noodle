@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ryanmatthewrenaud.TechNoodle.Contacting.Tickets.Ticket;
 import com.ryanmatthewrenaud.TechNoodle.Contacting.Tickets.TicketRepository;
 
-@CrossOrigin(origins ="http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ContactController {
 	private ContactRepository contactRepository;
@@ -38,20 +38,20 @@ public class ContactController {
 
 	// ALL CONTACTS
 	@GetMapping(path = "/api/contacts")
-	public List<Contact> getAllContacts(){
+	public List<Contact> getAllContacts() {
 		return contactRepository.findAll();
 	}
 
 	// GET ONE CONTACT BY ID
 	@GetMapping(path = "/api/contacts/{id}")
-	public Contact getAllContacts(@PathVariable int id){
+	public Contact getAllContacts(@PathVariable int id) {
 		return contactRepository.findById(id).orElseThrow(RuntimeException::new);
 	}
 
 	// CREATE CONTACT
 	@PostMapping(path = "/api/contacts")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity createContact(@RequestBody Contact contact) throws URISyntaxException{
+	public ResponseEntity createContact(@RequestBody Contact contact) throws URISyntaxException {
 		Contact currentContact = contact;
 		contact.setPhoneNumber(contact.formatPhoneNumber());
 		contact.setInitialContact(false);
@@ -62,7 +62,7 @@ public class ContactController {
 
 	// DELETE BY ID
 	@DeleteMapping(path = "/api/contacts/{id}")
-	public ResponseEntity deleteContactById(@PathVariable int id){
+	public ResponseEntity deleteContactById(@PathVariable int id) {
 		Contact currentContact = contactRepository.findById(id).orElseThrow(RuntimeException::new);
 		contactRepository.delete(currentContact);
 		return ResponseEntity.ok().build();
@@ -70,7 +70,7 @@ public class ContactController {
 
 	// UPDATE CONTACTED VALUE BY ID
 
-	@PatchMapping(path ="/api/contacts/{id}/contact")
+	@PatchMapping(path = "/api/contacts/{id}/contact")
 	public ResponseEntity editContactedValue(@PathVariable int id, @RequestBody Contact contact) {
 		Contact currentContact = contactRepository.findById(id).orElseThrow(RuntimeException::new);
 		contactRepository.save(currentContact);
@@ -79,7 +79,7 @@ public class ContactController {
 
 	// UPDATE CONTACT BY ID
 
-	@PutMapping(path ="/api/contacts/{id}/edit")
+	@PutMapping(path = "/api/contacts/{id}/edit")
 	public ResponseEntity editContactById(@PathVariable int id, @RequestBody Contact contact) {
 		Contact currentContact = contactRepository.findById(id).orElseThrow(RuntimeException::new);
 		currentContact.setPhoneNumber(contact.getPhoneNumber());
@@ -90,27 +90,28 @@ public class ContactController {
 
 	// RETRIEVE ALL CONTACT TICKETS
 
-	@GetMapping(path="/api/contacts/tickets")
-	public List<Ticket> getAllContactTickets(){
+	@GetMapping(path = "/api/contacts/tickets")
+	public List<Ticket> getAllContactTickets() {
 		return ticketRepository.findAll();
 	}
 
 	// RETRIEVE ALL CONTACT TICKETS BY CONTACT ID
-	@GetMapping(path="/api/contacts/{contactID}/tickets")
-	public List<Ticket> getAllContactTicketsByContactID(@PathVariable int contactID){
+	@GetMapping(path = "/api/contacts/{contactID}/tickets")
+	public List<Ticket> getAllContactTicketsByContactID(@PathVariable int contactID) {
 		Contact testContact = contactRepository.findById(contactID).orElseThrow(RuntimeException::new);
 		return testContact.getAllContactTickets();
 	}
 
 	// RETRIEVE SINGLE CONTACT TICKETS BY CONTACT ID AND TICKET ID
-	@GetMapping(path="/api/contacts/{contactID}/tickets/{ticketID}")
-	public Ticket getAllContactTicketsByContactID(@PathVariable int contactID, @PathVariable int ticketID){
+	@GetMapping(path = "/api/contacts/{contactID}/tickets/{ticketID}")
+	public Ticket getAllContactTicketsByContactID(@PathVariable int contactID, @PathVariable int ticketID) {
 		Contact testContact = contactRepository.findById(contactID).orElseThrow(RuntimeException::new);
 		return testContact.getTicketByID(ticketID);
 	}
 
-	@PostMapping(path="/api/contacts/{contactID}/tickets")
-	public ResponseEntity createTicketByContactID(@PathVariable int contactID, @RequestBody Ticket newTicket ) throws URISyntaxException {
+	@PostMapping(path = "/api/contacts/{contactID}/tickets")
+	public ResponseEntity createTicketByContactID(@PathVariable int contactID, @RequestBody Ticket newTicket)
+			throws URISyntaxException {
 		Contact currentContact = contactRepository.findById(contactID).orElseThrow(RuntimeException::new);
 		Ticket currentTicket = ticketRepository.save(newTicket);
 		currentTicket.setContact(currentContact);
@@ -119,11 +120,14 @@ public class ContactController {
 		currentTicket.setDisposition("Not Started");
 		currentTicket.setArchived(false);
 		ticketRepository.save(currentTicket);
-		return ResponseEntity.created(new URI("/contacts/" + currentContact.getId() + "/tickets/" + currentTicket.getId())).body(currentContact);
+		return ResponseEntity
+				.created(new URI("/contacts/" + currentContact.getId() + "/tickets/" + currentTicket.getId()))
+				.body(currentContact);
 	}
 
-	@DeleteMapping(path="/api/contacts/{contactID}/tickets/{ticketID}")
-	public ResponseEntity deleteContactTicketByContactTicketID(@PathVariable int contactID, @PathVariable int ticketID ) throws URISyntaxException {
+	@DeleteMapping(path = "/api/contacts/{contactID}/tickets/{ticketID}")
+	public ResponseEntity deleteContactTicketByContactTicketID(@PathVariable int contactID, @PathVariable int ticketID)
+			throws URISyntaxException {
 		Contact currentContact = contactRepository.findById(contactID).orElseThrow(RuntimeException::new);
 		Ticket currentTicket = currentContact.getTicketByID(ticketID);
 		currentContact.removeTicket(ticketID);
@@ -131,8 +135,8 @@ public class ContactController {
 		contactRepository.save(currentContact);
 		return ResponseEntity.ok().build();
 	}
-	
-	@PutMapping(path ="/api/contacts/{contactID}/tickets/{ticketID}/contacted")
+
+	@PutMapping(path = "/api/contacts/{contactID}/tickets/{ticketID}/contacted")
 	public ResponseEntity ContactTicketContact(@PathVariable int contactID, @PathVariable int ticketID) {
 		Ticket currentTicket = ticketRepository.findById(ticketID).orElseThrow(RuntimeException::new);
 		currentTicket.setContacted(true);
@@ -140,11 +144,16 @@ public class ContactController {
 		ticketRepository.save(currentTicket);
 		return ResponseEntity.ok(currentTicket);
 	}
-	
-	@PutMapping(path ="/api/contacts/{contactID}/tickets/{ticketID}")
-	public ResponseEntity dispositionChangeContactTicket(@PathVariable int contactID, @PathVariable int ticketID, @RequestBody Ticket tempTicket) {
+
+	@PutMapping(path = "/api/contacts/{contactID}/tickets/{ticketID}")
+	public ResponseEntity dispositionChangeContactTicket(@PathVariable int contactID, @PathVariable int ticketID,
+			@RequestBody Ticket tempTicket) {
 		Ticket currentTicket = ticketRepository.findById(ticketID).orElseThrow(RuntimeException::new);
+		currentTicket.setDescription(tempTicket.getDescription());
 		currentTicket.setDisposition(tempTicket.getDisposition());
+		currentTicket.setLastContacted(tempTicket.getLastContacted());
+		currentTicket.setContacted(tempTicket.getContacted());
+		currentTicket.setArchived(tempTicket.getArchived());
 		ticketRepository.save(currentTicket);
 		return ResponseEntity.ok(currentTicket);
 	}
