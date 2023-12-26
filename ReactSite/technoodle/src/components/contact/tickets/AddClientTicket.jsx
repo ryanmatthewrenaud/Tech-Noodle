@@ -22,20 +22,20 @@ export default function AddClientTicket({ contactID }) {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     }
 
+    const handleClear = () => {
+        this.setFormData({
+            device: '',
+            description: '',
+        });
+    }
 
     const handleSubmit = async (e) => {
         handleClose();
         try {
             const response = await axios.post(`http://localhost:8080/api/contacts/${contactID}/tickets`, formData);
-            setFormData({
-                device: '',
-                description: '',
-            });
+            handleClear();
         } catch (error) {
-            setFormData({
-                device: '',
-                description: '',
-            });
+            handleClear();
             console.error('Error submitting form data:', error);
         }
     }

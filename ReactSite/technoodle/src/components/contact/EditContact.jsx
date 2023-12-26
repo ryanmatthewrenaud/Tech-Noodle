@@ -102,8 +102,15 @@ export default function EditContact({ id, firstName, lastName, email, phoneNumbe
                                 </Form.Group>
                             </Col>
                         </Row> */}
+                        <Row>
+                            <Col>
+                                <Form.Label>Add Ticket</Form.Label>
+                            </Col>
+                        </Row>
                     </Form>
+
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

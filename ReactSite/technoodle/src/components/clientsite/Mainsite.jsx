@@ -4,10 +4,11 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import Services from "./Services";
 import Welcome from "./Welcome";
+import clientsite from '../clientsite/assests/styling/clientsite.css'
 
 export default function MainSite() {
     return (
-        <div>
+        <div className="main-site">
             <NavBar />
             <div id="home">
                 <Welcome />

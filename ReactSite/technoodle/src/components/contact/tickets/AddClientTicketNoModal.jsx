@@ -19,6 +19,7 @@ export default function AddClientTicketNoModal({ contactID, show }) {
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const response = await axios.post(`http://localhost:8080/api/contacts/${contactID}/tickets`, formData);
             setFormData({
@@ -35,7 +36,7 @@ export default function AddClientTicketNoModal({ contactID, show }) {
     }
 
     return (
-        <div hidden={!show}>
+        <div>
             <Form>
                 <Row>
                     <Col>

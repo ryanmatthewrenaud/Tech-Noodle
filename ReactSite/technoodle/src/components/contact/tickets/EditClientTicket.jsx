@@ -46,11 +46,11 @@ export default function EditClientTicket({ id, ticketID, device, description, co
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                Edit Contact
+                Edit Ticket
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Contact</Modal.Title>
+                    <Modal.Title>Edit Ticket</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>

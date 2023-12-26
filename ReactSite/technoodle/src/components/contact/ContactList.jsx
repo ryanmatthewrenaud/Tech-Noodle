@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import './styling/Contacts.css'
+import contacts from './styling/Contacts.css'
 import EditContact from './EditContact';
 import AddContact from './AddContact';
 import DeleteContact from './DeleteContact';
@@ -22,37 +22,39 @@ export default function ContactList() {
   })
 
   return (
-    <div className='contact'>
-      <h2 className='contactHeader'>Contacts</h2>
+    <div>
+      <div className='management-dash'>
+        <div className='contacts'>
+          <Table bordered >
+            <thead>
+              <th>Name(First & Last)</th>
+              <th>Email</th>
+              <th>Phone #</th>
+              <th>Initial Contacted</th>
+              <th>Initial Contact Date</th>
+              <th>Tickets</th>
+              <th>Modify</th>
+            </thead>
+            {contacts.map(contact => (
+              <tbody key={contact.id}>
+                <td>{contact.firstName} {contact.lastName}</td>
+                <td>{contact.email}</td>
+                <td>{contact.phoneNumber}</td>
+                <td>{contact.initialContact.toString()}</td>
+                <td>{contact.initialContactDate}</td>
+                <td><ListClientTickets contactID={contact.id} /></td>
+                <td>
+                  <AddClientTicket contactID={contact.id} />
+                  <EditContact id={contact.id} firstName={contact.firstName} lastName={contact.lastName} email={contact.email} phoneNumber={contact.phoneNumber} />
+                  <DeleteContact id={contact.id} />
+                </td>
+              </tbody>
+            ))}
 
-      <Table className='contactTable' bordered >
-        <thead>
-          <th>Name(First & Last)</th>
-          <th>Email</th>
-          <th>Phone #</th>
-          <th>Initial Contacted</th>
-          <th>Initial Contact Date</th>
-          <th>Tickets</th>
-          <th>Modify</th>
-        </thead>
-        {contacts.map(contact => (
-          <tbody key={contact.id}>
-            <td>{contact.firstName} {contact.lastName}</td>
-            <td>{contact.email}</td>
-            <td>{contact.phoneNumber}</td>
-            <td>{contact.initialContact.toString()}</td>
-            <td>{contact.initialContactDate}</td>
-            <td><ListClientTickets contactID={contact.id} /></td>
-            <td>
-              <AddClientTicket contactID={contact.id} />
-              <EditContact id={contact.id} firstName={contact.firstName} lastName={contact.lastName} email={contact.email} phoneNumber={contact.phoneNumber} />
-              <DeleteContact id={contact.id} />
-            </td>
-          </tbody>
-        ))}
-
-      </Table>
-      <AddContact />
+          </Table>
+        </div>
+        <AddContact />
+      </div>
     </div >
   )
 

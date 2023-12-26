@@ -3,11 +3,12 @@
     src: url('../fonts/Londrina/LondrinaSolid-Regular.otf');
 }
 
-@media only screen and (max-width:1000px) {
+.main-site{
+    font-family: "Lodrina - Solid";
+}
 
-    html,
-    body {
-        font-family: "Lodrina - Solid";
+@media only screen and (max-width:1000px) {
+    .main-site{
         overflow-x: hidden;
         width: 100%;
     }
@@ -146,7 +147,7 @@
         display: grid;
         grid-template-rows: auto;
         width: 90%;
-        margin: auto;
+        justify-items: center;
     }
 
     .services-ul {
@@ -193,8 +194,7 @@
 
 @media only screen and (min-width:1001px) {
 
-    html,
-    body {
+    .main-site{
         font-family: "Lodrina - Solid";
         overflow-x: hidden;
         width: 100%;
